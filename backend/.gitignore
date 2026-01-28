@@ -1,0 +1,6 @@
+credentials/google-service-account.json
+.env
+.env.*
+!.env.example
+node_modules/
+dump.rdb
