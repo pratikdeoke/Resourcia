@@ -7,6 +7,14 @@ import {
 import { authenticate } from '../middlewares/auth.middleware.js';
 import { authorizeRoles } from '../middlewares/rbac.middleware.js';
 
+import { validate } from '../middlewares/validate.middleware.js'
+import {
+  createBookingSchema,
+  updateBookingSchema,
+  bookingIdParamSchema,
+  bookingQuerySchema
+} from '../validations/index.js'
+
 const router = Router();
 
 // MEMBER → request a booking
@@ -14,6 +22,7 @@ router.post(
   '/request',
   authenticate,
   authorizeRoles('MEMBER'),
+  validate(createBookingSchema),
   createUserBooking
 );
 

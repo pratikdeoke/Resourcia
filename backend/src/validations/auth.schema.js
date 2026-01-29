@@ -2,7 +2,7 @@ import { z } from 'zod'
 
 export const registerSchema = z.object({
   body: z.object({
-    organization_id: z.string().uuid(),
+    organizationId: z.string().uuid(),
     name: z.string().min(2),
     email: z.string().email(),
     password: z.string().min(8)

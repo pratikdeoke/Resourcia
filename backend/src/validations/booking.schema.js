@@ -11,43 +11,74 @@ const isFutureOrNow = (date) => {
 
 export const createBookingSchema = z.object({
   body: z.object({
-    resource_id: z.string().uuid(),
+    resourceId: z.string().uuid(),
     title: z.string().min(1),
     description: z.string().optional(),
-    start_time: utcDateTime,
-    end_time: utcDateTime
+    startTime: utcDateTime,
+    endTime: utcDateTime
+  }).superRefine((data, ctx) => {
+    if (!data.startTime || !data.endTime) return;
+
+    const start = new Date(data.startTime).getTime();
+    const end = new Date(data.endTime).getTime();
+
+    if (isNaN(start) || isNaN(end)) {
+      ctx.addIssue({
+        path: ['startTime'],
+        message: 'Invalid datetime',
+        code: z.ZodIssueCode.custom
+      })
+      return;
+    }
+
+    if (start >= end) {
+      ctx.addIssue({
+        path: ['endTime'],
+        message: 'startTime must be before endTime',
+        code: z.ZodIssueCode.custom
+      })
+    }
+
+    if (start < Date.now()) {
+      ctx.addIssue({
+        path: ['startTime'],
+        message: 'startTime must be in the future (UTC)',
+        code: z.ZodIssueCode.custom
+      })
+    }
   })
-  .refine(
-    (data) => new Date(data.start_time) < new Date(data.end_time),
-    {
-      message: 'start_time must be before end_time',
-      path: ['end_time']
-    }
-  )
-  .refine(
-    (data) => isFutureOrNow(data.start_time),
-    {
-      message: 'start_time must be in the future (UTC)',
-      path: ['start_time']
-    }
-  )
 })
+
 
 export const updateBookingSchema = z.object({
   body: z.object({
     title: z.string().min(1).optional(),
     description: z.string().optional(),
-    start_time: utcDateTime.optional(),
-    end_time: utcDateTime.optional()
-  }).refine(
+    startTime: utcDateTime.optional(),
+    endTime: utcDateTime.optional()
+  })
+  .refine(
     (data) => {
-      if (data.start_time && data.end_time) {
-        return new Date(data.start_time) < new Date(data.end_time)
+      if (data.startTime && data.endTime) {
+        return new Date(data.startTime) < new Date(data.endTime)
       }
       return true
     },
     {
-      message: 'start_time must be before end_time'
+      message: 'startTime must be before endTime',
+      path: ['endTime']
+    }
+  )
+  .refine(
+    (data) => {
+      if (data.startTime) {
+        return new Date(data.startTime).getTime() >= Date.now()
+      }
+      return true
+    },
+    {
+      message: 'startTime must be in the future (UTC)',
+      path: ['startTime']
     }
   )
 })
@@ -61,6 +92,6 @@ export const bookingIdParamSchema = z.object({
 export const bookingQuerySchema = z.object({
   query: z.object({
     status: z.enum(['PENDING', 'CONFIRMED', 'REJECTED', 'CANCELLED']).optional(),
-    resource_id: z.string().uuid().optional()
+    resourceId: z.string().uuid().optional()
   })
 })

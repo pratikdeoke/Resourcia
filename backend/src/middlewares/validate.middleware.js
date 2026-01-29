@@ -14,13 +14,18 @@ export const validate = (schema) => {
         return res.status(400).json({
           success: false,
           message: 'Validation failed',
-          errors: err.errors.map((e) => ({
+          errors: err.issues.map((e) => ({
             field: e.path.join('.'),
             message: e.message
           }))
         })
       }
-      next(err)
+
+      console.error(err)
+      return res.status(400).json({
+        success: false,
+        message: err.message || 'Validation error'
+      })
     }
   }
 }

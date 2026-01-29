@@ -12,55 +12,59 @@ import {
 import { authenticate } from "../middlewares/auth.middleware.js";
 import { authorizeRoles } from "../middlewares/rbac.middleware.js";
 
+import { validate } from '../middlewares/validate.middleware.js'
+import {
+  createBookingSchema,
+  updateBookingSchema,
+  bookingIdParamSchema,
+  bookingQuerySchema
+} from '../validations/index.js'
+
 const router = Router();
 
-/**
- * Create a booking
- * Any authenticated user can create
- */
+// Create a booking
+// Any authenticated user can create
 router.post(
   "/",
   authenticate,
+  validate(createBookingSchema),
   createBookingController
 );
 
-/**
- * Get all bookings for logged-in user
- */
+// Get all bookings for logged-in user
 router.get(
   "/",
   authenticate,
+  validate(bookingQuerySchema),
   getUserBookingsController
 );
 
-/**
- * Update a booking
- * Only ADMIN or the user who created booking can update
- * For simplicity, assume owner check is in service
- */
+// Update a booking
+// Only ADMIN or the user who created booking can update
 router.put(
   "/:id",
   authenticate,
+  validate(bookingIdParamSchema),
+  validate(updateBookingSchema),
   updateBookingController
 );
 
-/**
- * Cancel a booking
- * Only ADMIN or the user who created booking can cancel
- */
+
+// Cancel a booking
+// Only ADMIN or the user who created booking can cancel
 router.delete(
   "/:id",
   authenticate,
+  validate(bookingIdParamSchema),
   cancelBookingController
 );
 
-/**
- * ADMIN → view all pending booking requests
- */
+//  * ADMIN → view all pending booking requests
 router.get(
   '/pending',
   authenticate,
   authorizeRoles('ADMIN'),
+  validate(bookingQuerySchema),
   getPendingBookingsController
 );
 
@@ -69,6 +73,7 @@ router.patch(
   '/:id/approve',
   authenticate,
   authorizeRoles('ADMIN'),
+  validate(bookingIdParamSchema),
   approveBookingController
 );
 
@@ -77,14 +82,16 @@ router.patch(
   '/:id/reject',
   authenticate,
   authorizeRoles('ADMIN'),
+  validate(bookingIdParamSchema),
   rejectBookingController
 );
 
-//  * ADMIN → cancel booking
+// ADMIN → cancel booking
 router.patch(
   '/:id/cancel',
   authenticate,
   authorizeRoles('ADMIN'),
+  validate(bookingIdParamSchema),
   cancelBookingController
 );
 

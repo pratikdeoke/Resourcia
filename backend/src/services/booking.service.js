@@ -4,6 +4,7 @@ import {
   getBookingsByUser,
   updateBooking,
   cancelBooking,
+  getBookingById
 } from "../repositories/booking.repository.js";
 
 import * as bookingRepo from "../repositories/booking.repository.js";
@@ -54,6 +55,16 @@ export const getUserBookingsService = async (userId) => {
 // Update a booking
 export const updateBookingService = async (id, data) => {
   if (!id) throw new Error("Booking ID is required");
+
+  const existingBooking = await getBookingById(id);
+
+  if (!existingBooking) {
+    throw new Error("Booking not found");
+  }
+
+  if (existingBooking.status === 'CONFIRMED') {
+    throw new Error("Approved bookings cannot be updated");
+  }
 
   const { startTime, endTime, resourceId } = data;
 
