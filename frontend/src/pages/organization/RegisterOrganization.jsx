@@ -24,7 +24,7 @@ export default function RegisterOrganization() {
   const [organization, setOrganization] = useState({
     name: "",
     domain: "",
-    timezone: "Asia/Kolkata",
+    timezone: "",
     calendarEmail: "",
   });
 
