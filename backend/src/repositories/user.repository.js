@@ -49,7 +49,6 @@ export const findUserById = async (id) => {
 };
 
 // For Memeber (normal user)
-
 export const createMember = async ({
   organizationId,
   name,
@@ -91,6 +90,19 @@ export const activateUser = async (userId) => {
     RETURNING id, name, email, is_active
     `,
     [userId]
+  );
+  return rows[0];
+};
+
+export const updateUserRole = async (userId, role) => {
+  const { rows } = await db.query(
+    `
+    UPDATE users
+    SET role = $2, updated_at = NOW()
+    WHERE id = $1
+    RETURNING id, name, email, role;
+    `,
+    [userId, role]
   );
   return rows[0];
 };

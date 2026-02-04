@@ -27,6 +27,7 @@ export const authenticate = (req, res, next) => {
       role: decoded.role,
       organizationId: decoded.organizationId,
       is_active: decoded.is_active,
+      is_owner: decoded.is_owner,
       email: decoded.email || null,
     };
     // console.log(is_active);

@@ -11,7 +11,7 @@ import * as bookingRepo from "../repositories/booking.repository.js";
 import { acquireLock, releaseLock } from "../utils/redisLock.js";
 import { createCalendarEvent, deleteCalendarEvent } from './googleCalendar.service.js';
 
-// ADMIN → Create booking directly
+// ADMIN - Create booking directly
 export const createBookingService = async ({
   organizationId,
   resourceId,
@@ -46,7 +46,7 @@ export const createBookingService = async ({
   });
 };
 
-//  * Get bookings for a user
+// Get bookings for a user
 export const getUserBookingsService = async (userId) => {
   if (!userId) throw new Error("User ID is required");
   return getBookingsByUser(userId);
@@ -112,7 +112,7 @@ export const requestUserBooking = async (data) => {
 };
 
 
-// MEMBER → List own bookings
+// MEMBER - List own bookings
 export const listUserBookings = async (userId) => {
   return getBookingsByUser(userId);
 };
@@ -122,7 +122,7 @@ export const getPendingBookings = async (organizationId) => {
   return bookingRepo.getPendingBookings(organizationId);
 };
 
-// ADMIN → approve booking
+// ADMIN - approve booking
 export const approveBooking = async (bookingId, organizationId) => {
   const booking = await bookingRepo.getBookingById(bookingId);
 
@@ -154,7 +154,7 @@ export const approveBooking = async (bookingId, organizationId) => {
   );
 };
 
-// ADMIN → reject booking
+// ADMIN - reject booking
 export const rejectBooking = async (bookingId, organizationId) => {
   const booking = await bookingRepo.getBookingById(bookingId);
 
@@ -172,7 +172,7 @@ export const rejectBooking = async (bookingId, organizationId) => {
   return bookingRepo.updateBookingStatus(bookingId, 'REJECTED');
 };
 
-//  * ADMIN → cancel booking
+// ADMIN - cancel booking
 export const cancelBookingService = async (bookingId, userId, role) => {
   const booking = await bookingRepo.getBookingById(bookingId);
 

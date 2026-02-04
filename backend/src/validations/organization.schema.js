@@ -4,7 +4,8 @@ export const createOrgSchema = z.object({
   body: z.object({
     name: z.string().min(2),
     domain: z.string().optional(),
-    timezone: z.string().min(1)
+    timezone: z.string().min(1),
+    calendarEmail: z.string().email().optional()
   })
 })
 

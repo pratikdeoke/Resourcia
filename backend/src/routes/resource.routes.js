@@ -6,7 +6,6 @@ import {
   updateResourceController,
   deleteResourceController,
 } from "../controllers/resource.controller.js";
-
 import { authenticate } from "../middlewares/auth.middleware.js";
 import { authorizeRoles } from "../middlewares/rbac.middleware.js";
 

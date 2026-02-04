@@ -103,7 +103,6 @@ export const cancelBooking = async (id) => {
   return rows[0];
 };
 
-
 // Get all bookings for a resource (for calendar or analytics)
 export const getAllBookingsForResource = async (resourceId) => {
   const query = `

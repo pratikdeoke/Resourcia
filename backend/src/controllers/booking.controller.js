@@ -39,7 +39,6 @@ export const getUserBookingsController = async (req, res, next) => {
 
 
 //  ADMIN → Update a booking
- 
 export const updateBookingController = async (req, res, next) => {
   try {
     const booking = await updateBookingService(req.params.id, req.body);
@@ -70,7 +69,6 @@ export const createUserBooking = async (req, res, next) => {
 };
 
 //  MEMBER → View own bookings
-
 export const getMyUserBookings = async (req, res, next) => {
   try {
     const bookings = await listUserBookings(req.user.id);
@@ -79,7 +77,6 @@ export const getMyUserBookings = async (req, res, next) => {
     next(err);
   }
 };
-
 
 export const getPendingBookingsController = async (req, res) => {
   const bookings = await getPendingBookings(

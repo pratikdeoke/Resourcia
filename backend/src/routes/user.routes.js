@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { register, getPending, approve } from '../controllers/user.controller.js';
+import { register, getPending, approve, changeRole } from '../controllers/user.controller.js';
 import {authenticate} from '../middlewares/auth.middleware.js';
 import {authorizeRoles} from '../middlewares/rbac.middleware.js';
 
@@ -19,6 +19,13 @@ router.patch(
   authenticate,
   authorizeRoles('ADMIN'),
   approve
+);
+
+router.patch(
+  '/:id/role',
+  authenticate,
+  authorizeRoles('ADMIN'),
+  changeRole
 );
 
 export default router;

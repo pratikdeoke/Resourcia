@@ -1,21 +1,33 @@
 import {
-  createOrganization,
-  findOrganizationByDomain,
+  createOrganizationWithOwner,
+  findOrganizationByName
 } from "../repositories/organization.repository.js";
 
 export const createOrganizationService = async (data) => {
-  const { name, domain, timezone } = data;
+  const { organization, owner } = data;
+
+  if (!organization || !owner) {
+    throw new Error("Organization and owner details are required");
+  }
+
+  const { name, domain, timezone } = organization;
 
   if (!name || !timezone) {
-    throw new Error("Name and timezone are required");
+    throw new Error("Organization name and timezone are required");
   }
 
-  if (domain) {
-    const existingOrg = await findOrganizationByDomain(domain);
-    if (existingOrg) {
-      throw new Error("Organization with this domain already exists");
-    }
+  if (!owner.name || !owner.email || !owner.password) {
+    throw new Error("Owner name, email and password are required");
   }
 
-  return await createOrganization(data);
+  if (name) {
+  const existingOrg = await findOrganizationByName(name);
+  if (existingOrg) {
+    throw new Error("Organization with this name already exists");
+  }
+}
+  return await createOrganizationWithOwner({
+    organization,
+    owner,
+  });
 };

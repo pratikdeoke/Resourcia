@@ -11,7 +11,6 @@ import {
 
 import { authenticate } from "../middlewares/auth.middleware.js";
 import { authorizeRoles } from "../middlewares/rbac.middleware.js";
-
 import { validate } from '../middlewares/validate.middleware.js'
 import {
   createBookingSchema,
@@ -49,7 +48,6 @@ router.put(
   updateBookingController
 );
 
-
 // Cancel a booking
 // Only ADMIN or the user who created booking can cancel
 router.delete(
@@ -59,7 +57,7 @@ router.delete(
   cancelBookingController
 );
 
-//  * ADMIN → view all pending booking requests
+// ADMIN → view all pending booking requests
 router.get(
   '/pending',
   authenticate,

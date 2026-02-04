@@ -22,7 +22,7 @@ if (fs.existsSync(CREDENTIALS_PATH)) {
   console.log('Google Calendar connected');
 } else {
   console.warn(
-    '⚠️ Google Calendar credentials not found — calendar sync disabled'
+    'Google Calendar credentials not found — calendar sync disabled'
   );
 }
 

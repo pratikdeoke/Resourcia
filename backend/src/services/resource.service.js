@@ -6,7 +6,6 @@ import {
   deleteResource,
 } from "../repositories/resource.repository.js";
 
-// Create a new resource with business validation
 export const createResourceService = async ({
   organizationId,
   name,
@@ -30,7 +29,6 @@ export const createResourceService = async ({
   return await createResource({ organizationId, name, type, capacity, location });
 };
 
-// Get all resources for an organization
 export const getResourcesService = async (organizationId) => {
   if (!organizationId) throw new Error("Organization ID is required");
   return await getResourcesByOrganization(organizationId);

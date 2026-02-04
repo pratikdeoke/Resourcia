@@ -1,6 +1,7 @@
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import { createUser, findUserByEmail } from "../repositories/user.repository.js";
+import { findOrganizationByName } from "../repositories/organization.repository.js";
 
 const JWT_SECRET = process.env.JWT_SECRET;
 const JWT_EXPIRES_IN = "1d";
@@ -40,14 +41,28 @@ const generateToken = (user) =>
       role: user.role,
       organizationId: user.organization_id,
       is_active: user.is_active,
+      is_owner: user.is_owner,
     },
     JWT_SECRET,
     { expiresIn: JWT_EXPIRES_IN }
   );
 
 // Login as ADMIN
-export const loginAdminService = async ({ organizationId, email, password }) => {
-  const user = await findUserByEmail(organizationId, email, true);
+export const loginAdminService = async ({
+  organizationName,
+  email,
+  password,
+}) => {
+  if (!organizationName || !email || !password) {
+    throw new Error("All fields are required");
+  }
+
+  const org = await findOrganizationByName(organizationName);
+  if (!org) {
+    throw new Error("Organization not found");
+  }
+
+  const user = await findUserByEmail(org.id, email, true);
 
   if (!user || user.role !== "ADMIN") {
     throw new Error("Invalid credentials");
@@ -65,13 +80,28 @@ export const loginAdminService = async ({ organizationId, email, password }) => 
       name: user.name,
       email: user.email,
       role: user.role,
+      organization_id: user.organization_id,
     },
   };
 };
 
+
 // Login as MEMBER
-export const loginUserService = async ({ organizationId, email, password }) => {
-  const user = await findUserByEmail(organizationId, email, true);
+export const loginUserService = async ({
+  organizationName,
+  email,
+  password,
+}) => {
+  if (!organizationName || !email || !password) {
+    throw new Error("All fields are required");
+  }
+
+  const org = await findOrganizationByName(organizationName);
+  if (!org) {
+    throw new Error("Organization not found");
+  }
+
+  const user = await findUserByEmail(org.id, email, true);
 
   if (!user || user.role !== "MEMBER") {
     throw new Error("Invalid credentials");
