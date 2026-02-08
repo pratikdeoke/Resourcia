@@ -5,7 +5,7 @@ import routes from "./routes/index.js";
 const app = express();
 
 app.use(cors({
-    origin: 'https://resourcia-frontend.netlify.app',
+    origin: 'https://resourcia-backend.vercel.app',
     credentials: true,
 }));
 app.use(express.json());

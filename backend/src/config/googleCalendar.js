@@ -1,29 +1,51 @@
-import { google } from 'googleapis';
-import path from 'path';
-import fs from 'fs';
+// import { google } from 'googleapis';
+// import path from 'path';
+// import fs from 'fs';
 
-const CREDENTIALS_PATH = path.resolve(
-  'credentials/google-service-account.json'
-);
+// const CREDENTIALS_PATH = path.resolve(
+//   'credentials/google-service-account.json'
+// );
+
+// let calendar = null;
+
+// if (fs.existsSync(CREDENTIALS_PATH)) {
+//   const auth = new google.auth.GoogleAuth({
+//     keyFile: CREDENTIALS_PATH,
+//     scopes: ['https://www.googleapis.com/auth/calendar'],
+//   });
+
+//   calendar = google.calendar({
+//     version: 'v3',
+//     auth,
+//   });
+
+//   console.log('Google Calendar connected');
+// } else {
+//   console.warn(
+//     'Google Calendar credentials not found — calendar sync disabled'
+//   );
+// }
+
+// export { calendar };
+
+import { google } from 'googleapis';
 
 let calendar = null;
 
-if (fs.existsSync(CREDENTIALS_PATH)) {
+if (process.env.GOOGLE_CALENDAR_JSON) {
+  const credentials = JSON.parse(
+    Buffer.from(process.env.GOOGLE_CALENDAR_JSON, 'base64').toString('utf-8')
+  );
+
   const auth = new google.auth.GoogleAuth({
-    keyFile: CREDENTIALS_PATH,
+    credentials,
     scopes: ['https://www.googleapis.com/auth/calendar'],
   });
 
-  calendar = google.calendar({
-    version: 'v3',
-    auth,
-  });
-
+  calendar = google.calendar({ version: 'v3', auth });
   console.log('Google Calendar connected');
 } else {
-  console.warn(
-    'Google Calendar credentials not found — calendar sync disabled'
-  );
+  console.warn('Google Calendar credentials not found — calendar sync disabled');
 }
 
 export { calendar };
