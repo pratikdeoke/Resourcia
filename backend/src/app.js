@@ -5,7 +5,19 @@ import routes from "./routes/index.js";
 const app = express();
 
 app.use(cors({
-  origin: "https://resourcia-frontend.netlify.app",
+  origin: (origin, callback) => {
+    const allowedOrigins = [
+      "https://resourcia-frontend.netlify.app",
+    ];
+
+    if (!origin) return callback(null, true);
+
+    if (allowedOrigins.includes(origin)) {
+      return callback(null, true);
+    }
+
+    callback(new Error("Not allowed by CORS"));
+  },
   credentials: true,
   methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
   allowedHeaders: ["Content-Type", "Authorization"],
