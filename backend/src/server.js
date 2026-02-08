@@ -1,18 +1,18 @@
 import "dotenv/config";
 import app from "./app.js";
 import pool from "./config/db.js";
-import { de } from "zod/v4/locales";
-
-const PORT = process.env.PORT;
 
 const startServer = async () => {
   try {
     await pool.query("SELECT 1");
     console.log("Database connected");
 
-    app.listen(PORT, () => {
-      console.log(`Server running on port ${PORT}`);
-    });
+    if (process.env.NODE_ENV !== "production") {
+      const PORT = process.env.PORT;
+      app.listen(PORT, () => {
+        console.log(`Server running on port ${PORT}`);
+      });
+    }
   } catch (error) {
     console.error("Failed to start server", error);
     process.exit(1);
@@ -20,4 +20,3 @@ const startServer = async () => {
 };
 
 startServer();
-export default app;
