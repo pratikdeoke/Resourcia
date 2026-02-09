@@ -147,7 +147,7 @@ export default function LoginAdmin() {
 
           <div className="mt-8 pt-8 border-t border-slate-100 text-center space-y-4">
             <p className="text-sm text-slate-500 font-medium">
-              Want to register your company?{" "}
+              Need a workspace?{" "}
               <Link to="/register-organization" className="text-indigo-600 font-bold hover:underline underline-offset-4">
                 Create an organization
               </Link>
