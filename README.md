@@ -74,7 +74,7 @@ Make sure you have the following installed:
 git clone https://github.com/pratikdeoke/Resourcia.git
 cd Resourcia
 
-## 2️⃣ Install Dependencies
+### 2️⃣ Install Dependencies
 
 Install dependencies for both backend and frontend.
 
