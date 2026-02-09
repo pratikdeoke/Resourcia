@@ -2,6 +2,10 @@
 
 Resourcia is a full-stack, multi-tenant resource booking platform designed to handle **concurrent reservations safely at scale**. It supports organizations such as colleges or offices to manage rooms, halls, and shared resources with **conflict-free scheduling** and **real-time Google Calendar synchronization**.
 
+🌐 **Live App:** https://resourcia.vercel.app  
+⚙️ **Backend API:** https://resourcia-backend.vercel.app
+📦 **Repository:** https://github.com/pratikdeoke/Resourcia
+
 ---
 
 ## 🚀 Features
