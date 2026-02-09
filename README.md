@@ -147,29 +147,113 @@ VITE_API_BASE_URL=http://localhost:5000/api/v1
 ```bash
 Resourcia/
 ├── backend/
+│   ├── .gitignore
+│   ├── package-lock.json
+│   ├── package.json
 │   ├── src/
+│   │   ├── app.js
 │   │   ├── config/
+│   │   │   ├── db.js
+│   │   │   ├── googleCalendar.js
+│   │   │   └── redis.js
 │   │   ├── controllers/
-│   │   ├── repositories/
-│   │   ├── routes/
-│   │   ├── validations/
+│   │   │   ├── auth.controller.js
+│   │   │   ├── booking.controller.js
+│   │   │   ├── organization.controller.js
+│   │   │   ├── resource.controller.js
+│   │   │   └── user.controller.js
 │   │   ├── middlewares/
+│   │   │   ├── auth.middleware.js
+│   │   │   ├── rbac.middleware.js
+│   │   │   └── validate.middleware.js
+│   │   ├── repositories/
+│   │   │   ├── booking.repository.js
+│   │   │   ├── organization.repository.js
+│   │   │   ├── resource.repository.js
+│   │   │   └── user.repository.js
+│   │   ├── routes/
+│   │   │   ├── auth.routes.js
+│   │   │   ├── booking.routes.js
+│   │   │   ├── index.js
+│   │   │   ├── organization.routes.js
+│   │   │   ├── resource.routes.js
+│   │   │   ├── user.routes.js
+│   │   │   └── userBooking.routes.js
 │   │   ├── server.js
-│   │   └── app.js
-│   ├── .env
-│   └── package.json
-│
+│   │   ├── services/
+│   │   │   ├── auth.service.js
+│   │   │   ├── booking.service.js
+│   │   │   ├── googleCalendar.service.js
+│   │   │   ├── organization.service.js
+│   │   │   ├── resource.service.js
+│   │   │   └── user.service.js
+│   │   ├── utils/
+│   │   │   ├── calendarEventMapper.js
+│   │   │   ├── errors.js
+│   │   │   ├── redisLock.js
+│   │   │   └── response.js
+│   │   └── validations/
+│   │       ├── auth.schema.js
+│   │       ├── booking.schema.js
+│   │       ├── index.js
+│   │       ├── organization.schema.js
+│   │       ├── resource.schema.js
+│   │       └── user.schema.js
+│   └── vercel.json
 ├── frontend/
+│   ├── .env
+│   ├── .gitignore
+│   ├── eslint.config.js
+│   ├── index.html
+│   ├── package-lock.json
+│   ├── package.json
+│   ├── postcss.config.js
+│   ├── public/
+│   │   └── vite.svg
+│   ├── README.md
 │   ├── src/
 │   │   ├── api/
+│   │   │   ├── auth.api.js
+│   │   │   ├── axios.js
+│   │   │   ├── booking.api.js
+│   │   │   ├── organization.api.js
+│   │   │   ├── resource.api.js
+│   │   │   └── user.api.js
+│   │   ├── App.css
+│   │   ├── App.jsx
+│   │   ├── assets/
+│   │   │   └── react.svg
 │   │   ├── components/
+│   │   │   ├── Layout.jsx
+│   │   │   └── Navbar.jsx
+│   │   ├── index.css
+│   │   ├── lib/
+│   │   │   └── utils.js
+│   │   ├── main.jsx
 │   │   ├── pages/
-│   │   ├── layouts/
-│   │   └── main.jsx
-│   ├── .env
-│   └── package.json
-│
+│   │   │   ├── admin/
+│   │   │   │   ├── AdminDashboard.jsx
+│   │   │   │   ├── ManageResources.jsx
+│   │   │   │   ├── PendingBookings.jsx
+│   │   │   │   ├── PendingUsers.jsx
+│   │   │   │   └── Resources.jsx
+│   │   │   ├── LoginAdmin.jsx
+│   │   │   ├── LoginUser.jsx
+│   │   │   ├── member/
+│   │   │   │   ├── MemberDashboard.jsx
+│   │   │   │   ├── MyBookings.jsx
+│   │   │   │   └── RequestBooking.jsx
+│   │   │   ├── organization/
+│   │   │   │   └── RegisterOrganization.jsx
+│   │   │   └── RegisterUser.jsx
+│   │   └── routes/
+│   │       └── AppRoutes.jsx
+│   ├── tailwind.config.js
+│   ├── vercel.json
+│   └── vite.config.js
+├── LICENSE
 └── README.md
+
 ```
 ---
 
