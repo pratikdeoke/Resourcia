@@ -34,6 +34,11 @@ export default function LoginAdmin() {
       const res = await loginAdmin({ organizationName, email, password });
       const { token, user } = res.data.data;
 
+      const userWithOrgName = { 
+        ...user, 
+        organization_name: organizationName 
+      };
+
       localStorage.setItem("token", token);
       localStorage.setItem("user", JSON.stringify(user));
 
