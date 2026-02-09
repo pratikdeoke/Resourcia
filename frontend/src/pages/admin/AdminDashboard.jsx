@@ -52,7 +52,7 @@ export default function AdminDashboard() {
           <div>
             <p className="text-[10px] uppercase font-bold text-slate-400 tracking-wider">Org Name</p>
             <div className="flex items-center gap-2">
-              <code className="text-sm font-mono font-bold text-slate-700">{user?.organization_name}</code>
+              <code className="text-sm font-mono font-bold text-slate-700">{user?.organization_name || "Unknown Organization"}</code>
               {/* <button onClick={copyOrgId} className="text-slate-400 hover:text-indigo-600 transition-colors">
                 <Copy size={14} />
               </button> */}
