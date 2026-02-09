@@ -40,7 +40,7 @@ export default function LoginAdmin() {
       };
 
       localStorage.setItem("token", token);
-      localStorage.setItem("user", JSON.stringify(user));
+      localStorage.setItem("user", JSON.stringify(userWithOrgName));
 
       showToast("Authentication successful! Redirecting...", "success");
       setTimeout(() => navigate("/admin"), 1000);
