@@ -58,95 +58,6 @@ Resourcia is a full-stack, multi-tenant resource booking platform designed to ha
 
 ---
 
-## 📋 Prerequisites
-
-Make sure you have the following installed:
-
-- Node.js (v18+ recommended)
-- npm or yarn
-- PostgreSQL (if running locally)
-- Google Cloud account (for Calendar API)
-- Supabase account
-
----
-
-## ⚙️ Installation Steps
-
-### 1️⃣ Clone the repository
-```bash
-git clone https://github.com/pratikdeoke/Resourcia.git
-cd Resourcia
-```
-
-### 2️⃣ Install Dependencies
-
-Install dependencies for both backend and frontend.
-
-### Backend
-```bash
-cd backend
-npm install
-```
-
-### Frontend
-```bash
-cd frontend
-npm install
-```
-
----
-
-## ▶️ Run Commands
-
-### Start Backend (Development)
-```bash
-cd backend
-npm run dev
-
-Backend will run at:
-http://localhost:5000
-```
-
-### Start Frontend
-```bash
-cd frontend
-npm run dev
-
-Frontend will run at:
-http://localhost:5173
-```
-
----
-
-## 🔐 Environment Variables (.env Setup)
-
-### Backend (.env)
-Create a `.env` file inside the `backend` folder and add:
-
-```bash
-PORT=5000
-DATABASE_URL=postgresql://USER:PASSWORD@HOST:PORT/DATABASE
-
-SUPABASE_URL=https://your-project-id.supabase.co
-SUPABASE_ANON_KEY=your_supabase_anon_key
-
-GOOGLE_CLIENT_EMAIL=your_service_account_email
-GOOGLE_PRIVATE_KEY="-----BEGIN PRIVATE KEY-----\nYOUR_PRIVATE_KEY\n-----END PRIVATE KEY-----\n"
-GOOGLE_PROJECT_ID=your_google_project_id
-or
-GOOGLE_CALENDAR_JSON=value
-
-JWT_SECRET=your_jwt_secret
-```
-
-### Frontend (.env)
-```bash
-Create a `.env` file inside the `frontend` folder and add:
-
-VITE_API_BASE_URL=http://localhost:5000/api/v1
-```
----
-
 ## 🗂️ Project Structure
 ```bash
 Resourcia/
@@ -258,6 +169,95 @@ Resourcia/
 ├── LICENSE
 └── README.md
 
+```
+---
+
+## 📋 Prerequisites
+
+Make sure you have the following installed:
+
+- Node.js (v18+ recommended)
+- npm or yarn
+- PostgreSQL (if running locally)
+- Google Cloud account (for Calendar API)
+- Supabase account
+
+---
+
+## ⚙️ Installation Steps
+
+### 1️⃣ Clone the repository
+```bash
+git clone https://github.com/pratikdeoke/Resourcia.git
+cd Resourcia
+```
+
+### 2️⃣ Install Dependencies
+
+Install dependencies for both backend and frontend.
+
+### Backend
+```bash
+cd backend
+npm install
+```
+
+### Frontend
+```bash
+cd frontend
+npm install
+```
+
+---
+
+## ▶️ Run Commands
+
+### Start Backend (Development)
+```bash
+cd backend
+npm run dev
+
+Backend will run at:
+http://localhost:5000
+```
+
+### Start Frontend
+```bash
+cd frontend
+npm run dev
+
+Frontend will run at:
+http://localhost:5173
+```
+
+---
+
+## 🔐 Environment Variables (.env Setup)
+
+### Backend (.env)
+Create a `.env` file inside the `backend` folder and add:
+
+```bash
+PORT=5000
+DATABASE_URL=postgresql://USER:PASSWORD@HOST:PORT/DATABASE
+
+SUPABASE_URL=https://your-project-id.supabase.co
+SUPABASE_ANON_KEY=your_supabase_anon_key
+
+GOOGLE_CLIENT_EMAIL=your_service_account_email
+GOOGLE_PRIVATE_KEY="-----BEGIN PRIVATE KEY-----\nYOUR_PRIVATE_KEY\n-----END PRIVATE KEY-----\n"
+GOOGLE_PROJECT_ID=your_google_project_id
+or
+GOOGLE_CALENDAR_JSON=value
+
+JWT_SECRET=your_jwt_secret
+```
+
+### Frontend (.env)
+```bash
+Create a `.env` file inside the `frontend` folder and add:
+
+VITE_API_BASE_URL=http://localhost:5000/api/v1
 ```
 ---
 
