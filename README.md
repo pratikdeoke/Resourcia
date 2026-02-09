@@ -80,12 +80,16 @@ cd Resourcia
 Install dependencies for both backend and frontend.
 
 ### Backend
+```bash
 cd backend
 npm install
+```
 
 ### Frontend
+```bash
 cd frontend
 npm install
+```
 
 ---
 
