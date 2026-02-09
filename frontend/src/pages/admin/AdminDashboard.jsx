@@ -15,6 +15,7 @@ import {
 export default function AdminDashboard() {
   const [counts, setCounts] = useState({ bookings: 0, users: 0 });
   const user = JSON.parse(localStorage.getItem("user"));
+  console.log(user);
 
   useEffect(() => {
     Promise.all([getPendingBookings(), getPendingUsers()]).then(([bookings, users]) => {
@@ -25,10 +26,10 @@ export default function AdminDashboard() {
     });
   }, []);
 
-  const copyOrgId = () => {
-    navigator.clipboard.writeText(user?.organization_id);
-    alert("Organization ID copied!");
-  };
+  // const copyOrgId = () => {
+  //   navigator.clipboard.writeText(user?.organization_id);
+  //   alert("Organization ID copied!");
+  // };
 
   return (
     <div className="space-y-8 animate-in fade-in duration-700">
@@ -49,9 +50,9 @@ export default function AdminDashboard() {
             <LayoutGrid size={20} />
           </div>
           <div>
-            <p className="text-[10px] uppercase font-bold text-slate-400 tracking-wider">Org ID</p>
+            <p className="text-[10px] uppercase font-bold text-slate-400 tracking-wider">Org Name</p>
             <div className="flex items-center gap-2">
-              <code className="text-sm font-mono font-bold text-slate-700">{user?.organization_id}</code>
+              <code className="text-sm font-mono font-bold text-slate-700">{user?.organization_name}</code>
               <button onClick={copyOrgId} className="text-slate-400 hover:text-indigo-600 transition-colors">
                 <Copy size={14} />
               </button>
