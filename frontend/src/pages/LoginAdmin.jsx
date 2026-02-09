@@ -147,9 +147,9 @@ export default function LoginAdmin() {
 
           <div className="mt-8 pt-8 border-t border-slate-100 text-center space-y-4">
             <p className="text-sm text-slate-500 font-medium">
-              New here?{" "}
-              <Link to="/register-user" className="text-indigo-600 font-bold hover:underline underline-offset-4">
-                Create an account
+              Want to register your company?{" "}
+              <Link to="/register-organization" className="text-indigo-600 font-bold hover:underline underline-offset-4">
+                Create an organization
               </Link>
             </p>
             <Link to="/login-user" className="block text-xs font-bold text-slate-400 hover:text-indigo-600 uppercase tracking-widest transition-colors">
