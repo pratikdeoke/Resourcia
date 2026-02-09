@@ -17,4 +17,8 @@ pool.on("connect", () => {
   console.log("Connected to PostgreSQL");
 });
 
+pool.on("error", (err) => {
+  console.error("Unexpected PG error", err);
+});
+
 export default pool;
