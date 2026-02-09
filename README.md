@@ -73,6 +73,7 @@ Make sure you have the following installed:
 ```bash
 git clone https://github.com/pratikdeoke/Resourcia.git
 cd Resourcia
+```
 
 ### 2️⃣ Install Dependencies
 
@@ -91,18 +92,22 @@ npm install
 ## ▶️ Run Commands
 
 ### Start Backend (Development)
+```bash
 cd backend
 npm run dev
 
 Backend will run at:
 http://localhost:5000
+```
 
 ### Start Frontend
+```bash
 cd frontend
 npm run dev
 
 Frontend will run at:
 http://localhost:5173
+```
 
 ---
 
@@ -111,6 +116,7 @@ http://localhost:5173
 ### Backend (.env)
 Create a `.env` file inside the `backend` folder and add:
 
+```bash
 PORT=5000
 DATABASE_URL=postgresql://USER:PASSWORD@HOST:PORT/DATABASE
 
@@ -124,16 +130,18 @@ or
 GOOGLE_CALENDAR_JSON=value
 
 JWT_SECRET=your_jwt_secret
+```
 
 ### Frontend (.env)
+```bash
 Create a `.env` file inside the `frontend` folder and add:
 
 VITE_API_BASE_URL=http://localhost:5000/api/v1
-
+```
 ---
 
 ## 🗂️ Project Structure
-
+```bash
 Resourcia/
 ├── backend/
 │   ├── src/
@@ -159,20 +167,23 @@ Resourcia/
 │   └── package.json
 │
 └── README.md
-
+```
 ---
 
 ## 📘 API Documentation
 
 ### Base URL
+```bash
 /api/v1
+```
 
 ### Endpoints
-
+```bash
 POST /api/v1/organizations  
 POST /api/v1/resources  
 POST /api/v1/bookings  
-GET  /api/v1/bookings/:resourceId  
+GET  /api/v1/bookings/:resourceId
+```
 
 ### Notes
 - All APIs accept and return JSON
