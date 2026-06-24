@@ -245,7 +245,7 @@ SUPABASE_URL=https://your-project-id.supabase.co
 SUPABASE_ANON_KEY=your_supabase_anon_key
 
 GOOGLE_CLIENT_EMAIL=your_service_account_email
-GOOGLE_PRIVATE_KEY="-----BEGIN PRIVATE KEY-----\nYOUR_PRIVATE_KEY\n-----END PRIVATE KEY-----\n"
+GOOGLE_PRIVATE_KEY=YOUR_PRIVATE_KEY
 GOOGLE_PROJECT_ID=your_google_project_id
 or
 GOOGLE_CALENDAR_JSON=value
