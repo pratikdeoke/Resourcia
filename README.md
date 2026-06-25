@@ -294,7 +294,6 @@ GET  /api/v1/bookings/:resourceId
 
 ## 🛣️ Future Improvements / Roadmap
 
-- Add automated testing (Jest / Vitest)
 - Email & notification system
 - Two-way Google Calendar sync
 - Analytics dashboard
