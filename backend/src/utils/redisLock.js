@@ -13,7 +13,6 @@ export const acquireLock = async (key) => {
       px: LOCK_TTL_MS,
     }
   );
-
   return result === 'OK';
 };
 
