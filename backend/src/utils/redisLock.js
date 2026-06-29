@@ -8,9 +8,10 @@ export const acquireLock = async (key) => {
   const result = await redis.set(
     lockKey,
     'locked',
-    'PX',
-    LOCK_TTL_MS,
-    'NX'
+    {
+      nx: true,
+      px: LOCK_TTL_MS,
+    }
   );
 
   return result === 'OK';
