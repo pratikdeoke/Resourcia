@@ -10,7 +10,6 @@ import {
   ArrowRight,
   AlertCircle,
   CheckCircle2,
-  Lock,
   Eye,
   EyeOff
 } from "lucide-react";
