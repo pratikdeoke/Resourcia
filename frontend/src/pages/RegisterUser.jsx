@@ -12,7 +12,6 @@ import {
   Info,
   CheckCircle2,
   AlertCircle,
-  Lock,
   Eye,
   EyeOff
 } from "lucide-react";
