@@ -14,7 +14,6 @@ import {
   Briefcase,
   Shield,
   Clock,
-  Lock,
   Eye,
   EyeOff
 } from "lucide-react";
