@@ -11,13 +11,17 @@ import {
   ArrowRight,
   Info,
   CheckCircle2,
-  AlertCircle
+  AlertCircle,
+  Lock,
+  Eye,
+  EyeOff
 } from "lucide-react";
 
 export default function RegisterUser() {
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
   const [toast, setToast] = useState({ show: false, message: "", type: "success" });
+  const [showPassword, setShowPassword] = useState(false);
   
   const [formData, setFormData] = useState({
     organizationName: "", 
@@ -126,9 +130,29 @@ export default function RegisterUser() {
 
               <div className="md:col-span-2">
                 <label className={labelClass}>Password</label>
+
                 <div className="relative">
-                  <Lock className="absolute left-3 top-3.5 text-slate-400" size={18} />
-                  <input name="password" type="password" required placeholder="Min. 6 characters" onChange={handleChange} className={inputClass} />
+                  <Lock
+                    className="absolute left-3 top-3.5 text-slate-400"
+                    size={18}
+                  />
+
+                  <input
+                    name="password"
+                    type={showPassword ? "text" : "password"}
+                    required
+                    placeholder="Min. 6 characters"
+                    onChange={handleChange}
+                    className={`${inputClass} pr-10`}
+                  />
+
+                  <button
+                    type="button"
+                    onClick={() => setShowPassword(!showPassword)}
+                    className="absolute right-3 top-3.5 text-slate-400 hover:text-slate-600"
+                  >
+                    {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
+                  </button>
                 </div>
               </div>
             </div>
