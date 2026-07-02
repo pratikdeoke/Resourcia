@@ -10,7 +10,6 @@ import {
   Building2, 
   CheckCircle2, 
   AlertCircle,
-  Lock,
   Eye,
   EyeOff
 } from "lucide-react";
