@@ -9,7 +9,10 @@ import {
   Building2, 
   ArrowRight,
   AlertCircle,
-  CheckCircle2
+  CheckCircle2,
+  Lock,
+  Eye,
+  EyeOff
 } from "lucide-react";
 
 export default function LoginAdmin() {
@@ -19,6 +22,7 @@ export default function LoginAdmin() {
   const [loading, setLoading] = useState(false);
   const [toast, setToast] = useState({ show: false, message: "", type: "error" });
   const [organizationName, setOrganizationName] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
   
   const navigate = useNavigate();
 
@@ -122,16 +126,26 @@ export default function LoginAdmin() {
 
             <div>
               <label className={labelClass}>Secure Key</label>
+
               <div className="relative">
                 <Lock className={iconClass} size={20} />
+
                 <input
-                  type="password"
+                  type={showPassword ? "text" : "password"}
                   placeholder="••••••••"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   required
-                  className={inputClass}
+                  className={`${inputClass} pr-10`}
                 />
+
+                <button
+                  type="button"
+                  onClick={() => setShowPassword(!showPassword)}
+                  className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600"
+                >
+                  {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
+                </button>
               </div>
             </div>
 
