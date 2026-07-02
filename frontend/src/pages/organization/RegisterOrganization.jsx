@@ -13,13 +13,17 @@ import {
   AlertCircle,
   Briefcase,
   Shield,
-  Clock
+  Clock,
+  Lock,
+  Eye,
+  EyeOff
 } from "lucide-react";
 
 export default function RegisterOrganization() {
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
   const [toast, setToast] = useState({ show: false, message: "", type: "success" });
+  const [showPassword, setShowPassword] = useState(false);
 
   const [organization, setOrganization] = useState({
     name: "",
@@ -191,20 +195,37 @@ export default function RegisterOrganization() {
                     />
                   </div>
                 </div>
+
                 <div>
                   <label className={labelClass}>Security Password</label>
+
                   <div className="relative">
-                    <Lock className="absolute left-3 top-3.5 text-slate-400" size={18} />
-                    <input 
-                      type="password" 
-                      required 
-                      placeholder="••••••••" 
-                      value={owner.password}
-                      onChange={(e) => setOwner({ ...owner, password: e.target.value })}
-                      className={inputClass} 
+                    <Lock
+                      className="absolute left-3 top-3.5 text-slate-400"
+                      size={18}
                     />
+
+                    <input
+                      type={showPassword ? "text" : "password"}
+                      required
+                      placeholder="••••••••"
+                      value={owner.password}
+                      onChange={(e) =>
+                        setOwner({ ...owner, password: e.target.value })
+                      }
+                      className={`${inputClass} pr-10`}
+                    />
+
+                    <button
+                      type="button"
+                      onClick={() => setShowPassword(!showPassword)}
+                      className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600"
+                    >
+                      {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
+                    </button>
                   </div>
                 </div>
+
               </div>
             </div>
 
