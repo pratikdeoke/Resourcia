@@ -2,7 +2,6 @@ import jwt from "jsonwebtoken";
 
 export const authenticate = (req, res, next) => {
   const authHeader = req.headers.authorization;
-  // console.log(authHeader);
   if (!authHeader) {
     return res.status(401).json({
       success: false,
@@ -30,7 +29,6 @@ export const authenticate = (req, res, next) => {
       is_owner: decoded.is_owner,
       email: decoded.email || null,
     };
-    // console.log(is_active);
     if (!req.user.is_active) {
       return res.status(403).json({
         success: false,
